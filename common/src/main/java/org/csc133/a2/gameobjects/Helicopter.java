@@ -9,27 +9,29 @@ import org.csc133.a2.Game;
 import org.csc133.a2.gameobjects.Helipad;
 import org.csc133.a2.gameobjects.River;
 
+import java.awt.*;
+
 class Helicopter extends Movable{
     private Point location;
     private int fuel;
     private int water;
     private int speed;
     private int heading;
-    private org.csc133.a2.Helipad helipad;
+    private org.csc133.a2.gameobjects.Helipad helipad;
     private Point lineLocation;
     private double radianHeading;
     public Helicopter(){
         init();
     }
 
-    private void init(){
+    public void init(){
         int height = Game.DISP_H / 50;
         int width = Game.DISP_W / 30;
         radianHeading = 0;
         fuel = 25000;
         speed = 0;
         water = 0;
-        helipad = new org.csc133.a2.Helipad();
+        helipad = new org.csc133.a2.gameobjects.Helipad();
         heading = 0;
 
         location = new Point(
@@ -40,6 +42,9 @@ class Helicopter extends Movable{
                 location.getY() - 100
         );
     }
+
+
+
 
     public Point getLocation() {
         return location;
@@ -69,7 +74,7 @@ class Helicopter extends Movable{
         }
     }
 
-    public void fight(org.csc133.a2.Fire fire){
+    public void fight(org.csc133.a2.gameobjects.Fire fire){
         if (collidesWithFire(fire)) {
             water -= fire.getSize();
             fire.setSize(-water);
@@ -192,5 +197,51 @@ class Helicopter extends Movable{
                 && (fireYLoc + fire.getSize() >= location.getY())
                 && (fireXLoc <= location.getX())
                 && (fireXLoc + fire.getSize() >= location.getX());
+    }
+
+    @Override
+    public boolean collidesWith(GameObject first, GameObject second) {
+        return false;
+    }
+
+    @Override
+    public int getSize(Dimension d) {
+        return 0;
+    }
+
+    @Override
+    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
+        g.setColor(ColorUtil.YELLOW);
+
+        //drawing a filled circle and line relative to its location
+        g.fillArc(location.getX(),
+                location.getY(),
+                50,50,
+                0,360);
+        g.drawLine(location.getX() + 25,
+                location.getY() + 25,
+
+                //x1 y1 guarantees that the line starts
+                //in the center of the circle but the
+                //x2 y2 are dictated by the angle of the heading
+                lineLocation.getX(),
+                lineLocation.getY());
+        g.drawString("Water: " + water,
+                location.getX(),
+                location.getY()  + 100);
+
+        g.drawString("Fuel: " + fuel,
+                location.getX(),
+                location.getY() + 60);
+    }
+
+    @Override
+    public void steerLeft() {
+
+    }
+
+    @Override
+    public void steerRight() {
+
     }
 }

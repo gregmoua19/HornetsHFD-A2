@@ -5,6 +5,8 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 
+import java.awt.*;
+
 class Helipad extends Fixed{
 
     private Point location;
@@ -12,7 +14,7 @@ class Helipad extends Fixed{
         init();
     }
 
-    private void init(){
+    public void init(){
 
         //set the location of the helipad equal
         //to middle of screen at the bottom (9/10 of the way down)
@@ -20,6 +22,7 @@ class Helipad extends Fixed{
                 Game.DISP_H -
                         Game.DISP_H / 10);
     }
+
     public void draw(Graphics g) {
 
         g.setColor(ColorUtil.GRAY);
@@ -36,6 +39,21 @@ class Helipad extends Fixed{
     //the helicopter and helipad spawn with each other
     public Point getLocation(){
         return location;
+    }
+
+    @Override
+    public boolean collidesWith(GameObject first, GameObject second) {
+        return false;
+    }
+
+    @Override
+    public int getSize(Dimension d) {
+        return 0;
+    }
+
+    @Override
+    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
+
     }
 }
 

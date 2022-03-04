@@ -5,6 +5,8 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 
+import java.awt.*;
+
 class River extends Fixed{
 
     private Point location;
@@ -12,10 +14,13 @@ class River extends Fixed{
         init();
     }
 
-    private void init() {
+    public void init() {
         location = new Point(0,
                 Game.DISP_H / 3);
     }
+
+
+
     public void draw(Graphics g) {
 
         g.setColor(ColorUtil.BLUE);
@@ -26,5 +31,20 @@ class River extends Fixed{
 
     public Point getLocation(){
         return location;
+    }
+
+    @Override
+    public boolean collidesWith(GameObject first, GameObject second) {
+        return false;
+    }
+
+    @Override
+    public int getSize(Dimension d) {
+        return 0;
+    }
+
+    @Override
+    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
+
     }
 }

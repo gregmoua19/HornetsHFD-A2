@@ -6,11 +6,11 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.util.UITimer;
 
-class Game extends Form implements Runnable{
+public class Game extends Form implements Runnable{
     private GameWorld gw;
 
-    final static int DISP_W = Display.getInstance().getDisplayWidth();
-    final static int DISP_H = Display.getInstance().getDisplayHeight();
+    public final static int DISP_W = Display.getInstance().getDisplayWidth();
+    public final static int DISP_H = Display.getInstance().getDisplayHeight();
 
     public static int getSmallDim() {
         return Math.min(DISP_W, DISP_H);
