@@ -6,7 +6,7 @@ import com.codename1.ui.geom.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
-class GameWorld {
+public class GameWorld {
     private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
