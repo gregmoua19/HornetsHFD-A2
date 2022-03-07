@@ -8,7 +8,7 @@ import org.csc133.a2.Game;
 import java.awt.*;
 import java.util.Random;
 
-class Fire extends Fixed{
+public class Fire extends Fixed{
     private Point location;
     private int size;
 
@@ -40,7 +40,7 @@ class Fire extends Fixed{
     }
 
     @Override
-    public boolean collidesWith(GameObject first, GameObject second) {
+    public boolean collidesWith(GameObject other) {
         return false;
     }
 

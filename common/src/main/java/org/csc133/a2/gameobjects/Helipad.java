@@ -7,7 +7,7 @@ import org.csc133.a2.Game;
 
 import java.awt.*;
 
-class Helipad extends Fixed{
+public class Helipad extends Fixed{
 
     private Point location;
     public Helipad(){
@@ -42,7 +42,7 @@ class Helipad extends Fixed{
     }
 
     @Override
-    public boolean collidesWith(GameObject first, GameObject second) {
+    public boolean collidesWith(GameObject other) {
         return false;
     }
 

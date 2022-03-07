@@ -9,7 +9,7 @@ public class Building extends Fixed{
     }
 
     @Override
-    public boolean collidesWith(GameObject first, GameObject second) {
+    public boolean collidesWith(GameObject other) {
         return false;
     }
 
@@ -20,6 +20,10 @@ public class Building extends Fixed{
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
+
+    }
+
+    public void setFireinBuilding(Fire fire) {
 
     }
 }

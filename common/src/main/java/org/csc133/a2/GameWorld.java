@@ -2,11 +2,13 @@ package org.csc133.a2;
 
 import com.codename1.ui.*;
 import com.codename1.ui.geom.Point;
+import org.csc133.a2.gameobjects.*;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class GameWorld {
+    private ArrayList<GameObject> allGameObjects;
     private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
@@ -14,52 +16,15 @@ public class GameWorld {
     private River river;
     private int increment;
 
+    //constructor to make and then add everything to items
     public GameWorld(){
-        helicopter = new Helicopter();
-        helipad = new Helipad();
-        river = new River();
-        fires = new ArrayList<>();
+        allGameObjects = new ArrayList<>();
+        allGameObjects.add(helicopter = new Helicopter());
+        allGameObjects.add(helipad = new Helipad());
+        allGameObjects.add(river = new River());
+        //add buildings
 
-        for(int i = 0; i < NUMBER_OF_FIRES;i++) {
-            fires.add(new Fire());
-
-            if(i == 0) {
-                fires.get(i).setLocation(
-                        new Point(
-                                new Random().nextInt(
-                                        Game.DISP_W / 10) + Game.DISP_W / 10,
-                                new Random().nextInt(
-                                        Game.DISP_H / 10) + Game.DISP_H /10));
-
-                fires.get(i).setSize(
-                        new Random().nextInt(
-                                Game.DISP_W / 10)+50);
-
-            } else if (i == 1) {
-                fires.get(i).setLocation(
-                        new Point(
-                                new Random().nextInt(
-                                        Game.DISP_W / 10) + (6 * Game.DISP_W / 10),
-                                new Random().nextInt(
-                                        Game.DISP_H / 10) + Game.DISP_H / 10));
-
-                fires.get(i).setSize(
-                        new Random().nextInt(
-                                Game.DISP_W / 10)+75);
-            } else {
-                fires.get(i).setLocation(
-                        new Point(
-                                new Random().nextInt(
-                                        Game.DISP_W / 2) + Game.DISP_W / 10,
-                                new Random().nextInt(
-                                        Game.DISP_H / 10) + (7 * Game.DISP_H / 10)));
-
-                fires.get(i).setSize(
-                        new Random().nextInt(
-                                Game.DISP_W / 10)+100);
-            }
-        }
-        increment = 0;
+        //add fires
     }
 
     void init() {
@@ -67,7 +32,6 @@ public class GameWorld {
     }
 
     public void quit() {
-
         Display.getInstance().exitApplication();
     }
 
@@ -189,6 +153,10 @@ public class GameWorld {
             }
         }
         return true;
+    }
+
+    public ArrayList<GameObject> getGameObjectCollection(){
+        return allGameObjects;
     }
 
 }

@@ -5,11 +5,15 @@ import org.csc133.a2.interfaces.Steerable;
 import java.awt.*;
 
 public abstract class Movable extends GameObject implements Steerable {
+
+    public int speed;
+    public int heading;
+
     @Override
     public abstract void init();
 
     @Override
-    public abstract boolean collidesWith(GameObject first, GameObject second);
+    public abstract boolean collidesWith(GameObject other);
 
     @Override
     public abstract int getSize(Dimension d);

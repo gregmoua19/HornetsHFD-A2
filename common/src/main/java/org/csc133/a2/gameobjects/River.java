@@ -7,7 +7,7 @@ import org.csc133.a2.Game;
 
 import java.awt.*;
 
-class River extends Fixed{
+public class River extends Fixed{
 
     private Point location;
     public River(){
@@ -34,7 +34,7 @@ class River extends Fixed{
     }
 
     @Override
-    public boolean collidesWith(GameObject first, GameObject second) {
+    public boolean collidesWith(GameObject other) {
         return false;
     }
 

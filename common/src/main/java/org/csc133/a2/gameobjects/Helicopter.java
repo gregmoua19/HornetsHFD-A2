@@ -8,10 +8,11 @@ import org.csc133.a2.gameobjects.Fire;
 import org.csc133.a2.Game;
 import org.csc133.a2.gameobjects.Helipad;
 import org.csc133.a2.gameobjects.River;
+import org.w3c.dom.css.RGBColor;
 
 import java.awt.*;
 
-class Helicopter extends Movable{
+public class Helicopter extends Movable{
     private Point location;
     private int fuel;
     private int water;
@@ -42,9 +43,6 @@ class Helicopter extends Movable{
                 location.getY() - 100
         );
     }
-
-
-
 
     public Point getLocation() {
         return location;
@@ -82,31 +80,6 @@ class Helicopter extends Movable{
                 water = 0;
             }
         }
-    }
-
-    public void draw(Graphics g) {
-        g.setColor(ColorUtil.YELLOW);
-
-        //drawing a filled circle and line relative to its location
-        g.fillArc(location.getX(),
-                location.getY(),
-                50,50,
-                0,360);
-        g.drawLine(location.getX() + 25,
-                location.getY() + 25,
-
-                //x1 y1 guarantees that the line starts
-                //in the center of the circle but the
-                //x2 y2 are dictated by the angle of the heading
-                lineLocation.getX(),
-                lineLocation.getY());
-        g.drawString("Water: " + water,
-                location.getX(),
-                location.getY()  + 100);
-
-        g.drawString("Fuel: " + fuel,
-                location.getX(),
-                location.getY() + 60);
     }
 
     public void walk(){
@@ -154,13 +127,13 @@ class Helicopter extends Movable{
 
     }
 
-    public void steer(boolean direction){
+    public void steer(boolean direction) {
         //turn right so +15
-        if(direction) {
+        if (direction) {
 
             //conditionals to change heading by 15 degrees
             //once it hits 360 it will jump to 15
-            if(heading == 360 || heading == 0) {
+            if (heading == 360 || heading == 0) {
                 heading = 15;
             } else {
                 heading += 15;
@@ -180,38 +153,26 @@ class Helicopter extends Movable{
         //just like in easy clock the 24 represents 360/15
         //meaning there are 24 possible places for the line to turn
         //and the 15 is representative of which area was selected
-        radianHeading = Math.toRadians(360/24 * (heading /15) + 90);
-    }
-
-    public boolean collidesWithRiver(org.csc133.a2.River river) {
-        int YRiver = river.getLocation().getY();
-        int dispHeight = Game.DISP_H / 10;
-        return (YRiver <= this.getLocation().getY()) &&
-                YRiver + dispHeight >= this.getLocation().getY();
-    }
-
-    public boolean collidesWithFire(org.csc133.a2.Fire fire) {
-        int fireXLoc = fire.getLocation().getX();
-        int fireYLoc = fire.getLocation().getY();
-        return (fireYLoc <= location.getY())
-                && (fireYLoc + fire.getSize() >= location.getY())
-                && (fireXLoc <= location.getX())
-                && (fireXLoc + fire.getSize() >= location.getX());
+        radianHeading = Math.toRadians(360 / 24 * (heading / 15) + 90);
     }
 
     @Override
-    public boolean collidesWith(GameObject first, GameObject second) {
-        return false;
+    public boolean collidesWith(GameObject other) {
+
+        return (other.getPoint().getY() <= location.getY())
+                && (other.getPoint().getY() + other.getDim().getHeight() >= location.getY())
+                && (other.getPoint().getX() <= location.getX())
+                && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());;
     }
 
     @Override
     public int getSize(Dimension d) {
-        return 0;
+        return d.getSize();
     }
 
     @Override
     public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
-        g.setColor(ColorUtil.YELLOW);
+        g.setColor(RGBColor(255,255,0));
 
         //drawing a filled circle and line relative to its location
         g.fillArc(location.getX(),
