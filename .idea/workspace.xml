@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="Began setting up views subpackages and classes.">
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/AccelerateCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/BrakeCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/DrinkCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/ExitCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/FightCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnLeftCmmand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnRightCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Fire.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Fire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helicopter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helipad.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helipad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Movable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/River.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/River.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" afterDir="false" />
-    </list>
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -828,7 +810,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646556499691</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init">
+      <created>1646642052903</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1646642052903</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -847,6 +836,7 @@
     <MESSAGE value="Began shifting and creating files for each of the subpackages. Refactoring is in its early stages." />
     <MESSAGE value="Finished general heirarchy for GameObjects. Need to adjust the methods of each object to fit into place. Broke down the monstrous Appmain class into sizable smaller classes in separate packages." />
     <MESSAGE value="Began setting up views subpackages and classes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Began setting up views subpackages and classes." />
+    <MESSAGE value="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init" />
   </component>
 </project>
