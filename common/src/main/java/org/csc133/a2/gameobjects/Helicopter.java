@@ -72,16 +72,6 @@ public class Helicopter extends Movable{
         }
     }
 
-    public void fight(org.csc133.a2.gameobjects.Fire fire){
-        if (collidesWithFire(fire)) {
-            water -= fire.getSize();
-            fire.setSize(-water);
-            if (water < 0) {
-                water = 0;
-            }
-        }
-    }
-
     public void walk(){
 
         //take angle

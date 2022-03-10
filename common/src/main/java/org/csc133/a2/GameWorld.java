@@ -53,7 +53,7 @@ public class GameWorld {
     }
 
     public void drinkWater(){
-        if (helicopter.collidesWithRiver(river)) {
+        if (helicopter.collidesWith(river)) {
             helicopter.drinkWater();
         }
     }

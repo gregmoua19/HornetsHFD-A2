@@ -3,6 +3,9 @@ package org.csc133.a2.gameobjects;
 import java.awt.*;
 
 public class Building extends Fixed{
+    int value;
+    int damage;
+
     @Override
     public void init() {
 

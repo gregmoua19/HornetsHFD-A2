@@ -14,8 +14,8 @@ public class MapView extends Container {
     }
 
     public void draw(Graphics g, Container c) {
-        for(GameObject go : gw.getGameObjectCollection()) {
-            go.draw();
+        for(GameObject go: gw.getGameObjectCollection()) {
+            go.draw(g,new Point(this.getX(),this.getY()));
         }
     }
 

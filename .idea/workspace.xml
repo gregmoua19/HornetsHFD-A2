@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init" />
+    <list default="true" id="336d32c5-6f4b-4a8f-b637-9fea310958e7" name="Default Changelist" comment="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/GameWorld.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/BrakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/BrakeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/DrinkCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/DrinkCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/FightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/FightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnLeftCmmand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnLeftCmmand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnRightCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/commands/TurnRightCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helicopter.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/gameobjects/Helicopter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/org/csc133/a2/views/MapView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -817,7 +829,21 @@
       <option name="project" value="LOCAL" />
       <updated>1646642052903</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init">
+      <created>1646679291962</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1646679291962</updated>
+    </task>
+    <task id="LOCAL-00007" summary="-Added all new command files &#10;-Still refactoring all gameobject classes&#10;-Code is not in a runnable state because of said refactoring&#10;-Have replaced older versions of methods that are now implemented through object heirachies&#10;-EX: collides, getsize, draw, init">
+      <created>1646679436801</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646679436801</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
