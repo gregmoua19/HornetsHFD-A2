@@ -22,10 +22,6 @@ public class Fire extends Fixed{
                 new Random().nextInt(Game.DISP_H));
     }
 
-
-    public void draw(Graphics g) {
-    }
-
     public Point getLocation() {
         return location;
     }

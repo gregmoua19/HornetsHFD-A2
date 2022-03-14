@@ -43,7 +43,11 @@ public class Helipad extends Fixed{
 
     @Override
     public boolean collidesWith(GameObject other) {
-        return false;
+
+        return (other.getPoint().getY() <= location.getY())
+                && (other.getPoint().getY() + other.getDim().getHeight() >= location.getY())
+                && (other.getPoint().getX() <= location.getX())
+                && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
     }
 
     @Override

@@ -8,6 +8,8 @@ public class Building extends Fixed{
 
     @Override
     public void init() {
+        damage = 0;
+        value = 10000;
 
     }
 

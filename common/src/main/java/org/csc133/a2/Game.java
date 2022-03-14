@@ -52,6 +52,7 @@ public class Game extends Form implements Runnable{
     public void run() {
         gw.tick();
         repaint();
+        mv.update();
     }
 }
 
