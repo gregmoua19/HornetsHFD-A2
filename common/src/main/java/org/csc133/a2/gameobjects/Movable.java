@@ -1,9 +1,10 @@
 package org.csc133.a2.gameobjects;
 
 import org.csc133.a2.interfaces.Steerable;
-
-import java.awt.*;
-
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 public abstract class Movable extends GameObject implements Steerable {
 
     public int speed;

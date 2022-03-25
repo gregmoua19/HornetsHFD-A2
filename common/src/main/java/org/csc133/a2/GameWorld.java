@@ -6,10 +6,11 @@ import org.csc133.a2.gameobjects.*;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameWorld {
-    private ArrayList<GameObject> allGameObjects;
-    private final int NUMBER_OF_FIRES = 3;
+    private CopyOnWriteArrayList<GameObject> allGameObjects;
+    //private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
     private Helipad helipad;
@@ -18,10 +19,14 @@ public class GameWorld {
 
     //constructor to make and then add everything to items
     public GameWorld(){
-        allGameObjects = new ArrayList<>();
-        allGameObjects.add(helicopter = new Helicopter());
-        allGameObjects.add(helipad = new Helipad());
-        allGameObjects.add(river = new River());
+        helicopter = new Helicopter();
+        helipad = new Helipad();
+        river = new River();
+        allGameObjects = new CopyOnWriteArrayList<>();
+
+        allGameObjects.add(helicopter);
+        allGameObjects.add(helipad);
+        allGameObjects.add(river);
         //add buildings
 
         //add fires
@@ -35,23 +40,9 @@ public class GameWorld {
         Display.getInstance().exitApplication();
     }
 
-
-    public void draw(Graphics g) {
-        g.clearRect(0,0, Game.DISP_W, Game.DISP_H);
-        helicopter.draw(g, 100);
-        river.draw(g);
-        helipad.draw(g);
-        for (Fire fire : fires) {
-            fire.draw(g);
-        }
-        tick();
-        g.setFont(Font.createSystemFont(CN.FACE_MONOSPACE,
-                CN.STYLE_PLAIN,
-                CN.SIZE_MEDIUM));
-    }
-
-    public void tick() {
 /*
+    public void tick() {
+
         //if all fires out and speed is 0
         //and resting on helipad you win
         if (allFiresOut(fires) && helicopter.getSpeed() == 0 && landCopter()) {
@@ -93,13 +84,16 @@ public class GameWorld {
                     fires.get(2).setSize(fires.get(2).getSize() + randomSize);
                 }
             }
+
+
         }
 
         //move around
         helicopter.walk();
         increment++;
-  */
     }
+ */
+
     public boolean landCopter(){
         Point copter = helicopter.getLocation();
         Point pad = helipad.getLocation();
@@ -120,7 +114,7 @@ public class GameWorld {
     }
 
 
-    public ArrayList<GameObject> getGameObjectCollection(){
+    public CopyOnWriteArrayList<GameObject> getGameObjectCollection(){
         return allGameObjects;
     }
 

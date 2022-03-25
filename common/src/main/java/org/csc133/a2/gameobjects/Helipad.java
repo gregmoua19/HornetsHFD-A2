@@ -5,8 +5,6 @@ import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 
-import java.awt.*;
-
 public class Helipad extends Fixed{
 
     private Point location;
@@ -50,8 +48,8 @@ public class Helipad extends Fixed{
                 && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
     }
     @Override
-    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
-
+    public void draw(Graphics g, Point containerOrigin) {
+        draw(g);
     }
 }
 

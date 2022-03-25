@@ -3,8 +3,8 @@ package org.csc133.a2.gameobjects;
 
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
-
-import java.awt.*;
+import com.codename1.ui.geom.Dimension;
+import com.codename1.ui.Graphics;
 
 public class Helicopter extends Movable{
     private Point location;
@@ -146,7 +146,7 @@ public class Helicopter extends Movable{
         return (other.getPoint().getY() <= location.getY())
                 && (other.getPoint().getY() + other.getDim().getHeight() >= location.getY())
                 && (other.getPoint().getX() <= location.getX())
-                && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());;
+                && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
     }
 
     @Override
@@ -155,9 +155,7 @@ public class Helicopter extends Movable{
     }
 
     @Override
-    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
-        Color color = new Color(255,255,0);
-        g.setColor(color);
+    public void draw(Graphics g, Point containerOrigin) {
 
         //drawing a filled circle and line relative to its location
         g.fillArc(location.getX(),

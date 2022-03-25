@@ -2,10 +2,10 @@ package org.csc133.a2.gameobjects;
 
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 
-import java.awt.*;
 
 public class River extends Fixed{
 
@@ -39,7 +39,7 @@ public class River extends Fixed{
     }
 
     @Override
-    public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
+    public void draw(Graphics g, Point containerOrigin) {
 
     }
 }

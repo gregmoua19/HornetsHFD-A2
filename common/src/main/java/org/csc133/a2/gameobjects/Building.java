@@ -1,6 +1,8 @@
 package org.csc133.a2.gameobjects;
 
-import java.awt.*;
+import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Point;
+import com.codename1.ui.geom.Dimension;
 
 public class Building extends Fixed{
     int value;
@@ -14,8 +16,18 @@ public class Building extends Fixed{
     }
 
     @Override
+    public Dimension getSize() {
+        return null;
+    }
+
+    @Override
     public boolean collidesWith(GameObject other) {
         return false;
+    }
+
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+
     }
 
     @Override
@@ -23,10 +35,7 @@ public class Building extends Fixed{
         return d;
     }
 
-    @Override
-    public void draw(Graphics g, Point containerOrigin) {
 
-    }
 
     public void setFireinBuilding(Fire fire) {
 
