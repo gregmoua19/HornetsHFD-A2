@@ -13,8 +13,5 @@ public abstract class Fixed extends GameObject{
     public abstract boolean collidesWith(GameObject other);
 
     @Override
-    public abstract int getSize(Dimension d);
-
-    @Override
     public abstract void draw(Graphics g, Point containerOrigin);
 }

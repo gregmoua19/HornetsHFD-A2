@@ -25,7 +25,7 @@ public class Game extends Form implements Runnable{
         gw = new GameWorld();
         gcp = new GlassCockpit(gw);
         mv = new MapView(gw);
-
+/*
         addKeyListener('Q', (evt) -> gw.quit());
         addKeyListener( -91, (ActionListener) new AccelerateCommand(gw));
         addKeyListener(-92, new BrakeCommand(gw));
@@ -33,7 +33,7 @@ public class Game extends Form implements Runnable{
         addKeyListener(-94, new TurnRightCommand(gw));
         addKeyListener('f', new FightCommand(gw));
         addKeyListener('d', new DrinkCommand(gw));
-
+*/
         UITimer timer = new UITimer(this);
         timer.schedule(200, true, this);
 
@@ -42,17 +42,17 @@ public class Game extends Form implements Runnable{
     }
 
     public void paint(Graphics g) {
-        super.paint(g);
+        //super.paint(g);
 
         //method where all objects drawn
-        mv.draw();
+        //mv.draw(g, Container c);
     }
 
     @Override
     public void run() {
-        gw.tick();
+        //gw.tick();
         repaint();
-        mv.update();
+        //mv.update();
     }
 }
 

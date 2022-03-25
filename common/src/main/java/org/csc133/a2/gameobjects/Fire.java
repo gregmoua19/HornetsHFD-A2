@@ -41,12 +41,13 @@ public class Fire extends Fixed{
     }
 
     @Override
-    public int getSize(Dimension d) {
-        return size;
+    public Dimension getSize(Dimension d) {
+        return d;
     }
 
     @Override
     public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
+
         g.setColor(ColorUtil.MAGENTA);
         if(size > 0) {
             g.fillArc(location.getX(),

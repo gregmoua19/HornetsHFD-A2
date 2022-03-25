@@ -49,12 +49,6 @@ public class Helipad extends Fixed{
                 && (other.getPoint().getX() <= location.getX())
                 && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
     }
-
-    @Override
-    public int getSize(Dimension d) {
-        return 0;
-    }
-
     @Override
     public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
 

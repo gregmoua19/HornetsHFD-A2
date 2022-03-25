@@ -1,14 +1,8 @@
 package org.csc133.a2.gameobjects;
 
 
-import com.codename1.charts.util.ColorUtil;
-import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
-import org.csc133.a2.gameobjects.Fire;
 import org.csc133.a2.Game;
-import org.csc133.a2.gameobjects.Helipad;
-import org.csc133.a2.gameobjects.River;
-import org.w3c.dom.css.RGBColor;
 
 import java.awt.*;
 
@@ -156,13 +150,14 @@ public class Helicopter extends Movable{
     }
 
     @Override
-    public int getSize(Dimension d) {
-        return d.getSize();
+    public Dimension getSize(Dimension d) {
+        return d;
     }
 
     @Override
     public void draw(java.awt.Graphics g, java.awt.Point containerOrigin) {
-        g.setColor(RGBColor(255,255,0));
+        Color color = new Color(255,255,0);
+        g.setColor(color);
 
         //drawing a filled circle and line relative to its location
         g.fillArc(location.getX(),

@@ -36,37 +36,9 @@ public class GameWorld {
     }
 
 
-    public void leftArrowPressed() {
-        helicopter.steer(false);
-    }
-
-    public void rightArrowPressed(){
-        helicopter.steer(true);
-    }
-
-    public void upArrowPressed(){
-        helicopter.changeSpeed(true);
-    }
-
-    public void downArrowPressed(){
-        helicopter.changeSpeed(false);
-    }
-
-    public void drinkWater(){
-        if (helicopter.collidesWith(river)) {
-            helicopter.drinkWater();
-        }
-    }
-
-    public void fightFire(){
-        for (Fire fire: fires) {
-            helicopter.fight(fire);
-        }
-    }
-
     public void draw(Graphics g) {
         g.clearRect(0,0, Game.DISP_W, Game.DISP_H);
-        helicopter.draw(g);
+        helicopter.draw(g, 100);
         river.draw(g);
         helipad.draw(g);
         for (Fire fire : fires) {
@@ -79,7 +51,7 @@ public class GameWorld {
     }
 
     public void tick() {
-
+/*
         //if all fires out and speed is 0
         //and resting on helipad you win
         if (allFiresOut(fires) && helicopter.getSpeed() == 0 && landCopter()) {
@@ -126,6 +98,7 @@ public class GameWorld {
         //move around
         helicopter.walk();
         increment++;
+  */
     }
     public boolean landCopter(){
         Point copter = helicopter.getLocation();
@@ -146,14 +119,6 @@ public class GameWorld {
         return false;
     }
 
-    public boolean allFiresOut(ArrayList<Fire> fires) {
-        for(Fire fire: fires) {
-            if(fire.getSize() > 0) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public ArrayList<GameObject> getGameObjectCollection(){
         return allGameObjects;

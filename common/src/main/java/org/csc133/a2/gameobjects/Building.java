@@ -19,8 +19,8 @@ public class Building extends Fixed{
     }
 
     @Override
-    public int getSize(Dimension d) {
-        return 0;
+    public Dimension getSize(Dimension d) {
+        return d;
     }
 
     @Override
