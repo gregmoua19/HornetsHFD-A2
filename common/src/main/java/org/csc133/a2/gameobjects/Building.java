@@ -1,5 +1,6 @@
 package org.csc133.a2.gameobjects;
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
 import com.codename1.ui.geom.Point;
 import com.codename1.ui.geom.Dimension;
@@ -10,15 +11,12 @@ public class Building extends Fixed{
 
     @Override
     public void init() {
+        this.color = ColorUtil.rgb(255,0,0);
         damage = 0;
         value = 10000;
 
     }
 
-    @Override
-    public Dimension getSize() {
-        return null;
-    }
 
     @Override
     public boolean collidesWith(GameObject other) {
@@ -26,16 +24,14 @@ public class Building extends Fixed{
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrigin) {
-
+    public int getSize() {
+        return 0;
     }
 
     @Override
-    public Dimension getSize(Dimension d) {
-        return d;
+    public void draw(Graphics g, Point containerOrigin) {
+        g.setColor(color);
     }
-
-
 
     public void setFireinBuilding(Fire fire) {
 

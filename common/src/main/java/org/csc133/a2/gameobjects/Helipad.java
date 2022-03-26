@@ -14,6 +14,7 @@ public class Helipad extends Fixed{
 
     public void init(){
 
+        this.color = ColorUtil.GRAY;
         //set the location of the helipad equal
         //to middle of screen at the bottom (9/10 of the way down)
         location = new Point(   Game.DISP_W / 2,
@@ -23,7 +24,7 @@ public class Helipad extends Fixed{
 
     public void draw(Graphics g) {
 
-        g.setColor(ColorUtil.GRAY);
+        g.setColor(color);
 
         int length = Game.DISP_W/20;
         int width = Game.DISP_W/20;
@@ -47,6 +48,12 @@ public class Helipad extends Fixed{
                 && (other.getPoint().getX() <= location.getX())
                 && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
     }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
+
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         draw(g);

@@ -9,7 +9,7 @@ import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameWorld {
-    private CopyOnWriteArrayList<GameObject> allGameObjects;
+    private ArrayList<GameObject> allGameObjects;
     //private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
@@ -22,7 +22,7 @@ public class GameWorld {
         helicopter = new Helicopter();
         helipad = new Helipad();
         river = new River();
-        allGameObjects = new CopyOnWriteArrayList<>();
+        allGameObjects = new ArrayList<>();
 
         allGameObjects.add(helicopter);
         allGameObjects.add(helipad);
@@ -114,9 +114,38 @@ public class GameWorld {
     }
 
 
-    public CopyOnWriteArrayList<GameObject> getGameObjectCollection(){
+    public ArrayList<GameObject> getGameObjectCollection(){
         return allGameObjects;
     }
 
+    public String getHeading() {
+        return String.valueOf(helicopter.getHeading());
+    }
+
+    public String getSpeed() {
+        return String.valueOf(helicopter.getSpeed());
+    }
+
+    public String getFuel() {
+        return String.valueOf(helicopter.getFuel());
+    }
+
+    public String getFires() {
+        //how many fires in arraylist
+        return "0";
+    }
+
+    public String getFireSize() {
+        //add all fires up
+        return "0";
+    }
+
+    public String getDamage() {
+        return "0";
+    }
+
+    public String getLoss() {
+        return "0";
+    }
 }
 

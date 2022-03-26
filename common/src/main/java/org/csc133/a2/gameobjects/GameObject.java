@@ -9,15 +9,17 @@ public abstract class GameObject implements Drawable {
 
     //must be general that applies to all
 
-    private Point point;
-    private Dimension dim;
-    private int color;
+     Point point;
+     Dimension dim;
+     int color;
 
     //Init method
     public abstract void init();
 
     //Collision method
     public abstract boolean collidesWith(GameObject other);
+
+    public abstract int getSize();
 
     public Point getPoint(){
         return point;

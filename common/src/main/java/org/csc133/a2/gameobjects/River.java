@@ -15,18 +15,10 @@ public class River extends Fixed{
     }
 
     public void init() {
+        this.color = ColorUtil.BLUE;
         location = new Point(0,
                 Game.DISP_H / 3);
-    }
 
-
-
-    public void draw(Graphics g) {
-
-        g.setColor(ColorUtil.BLUE);
-        g.drawRect(location.getX(), location.getY(),
-                Game.DISP_W,
-                Game.DISP_H / 10);
     }
 
     public Point getLocation(){
@@ -39,7 +31,15 @@ public class River extends Fixed{
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrigin) {
+    public int getSize() {
+        return this.getDim().getHeight();
+    }
 
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+        g.setColor(color);
+        g.drawRect(location.getX(), location.getY(),
+                Game.DISP_W,
+                Game.DISP_H / 10);
     }
 }

@@ -1,6 +1,7 @@
 package org.csc133.a2.gameobjects;
 
 
+import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 import com.codename1.ui.geom.Dimension;
@@ -10,8 +11,6 @@ public class Helicopter extends Movable{
     private Point location;
     private int fuel;
     private int water;
-    private int speed;
-    private int heading;
     private org.csc133.a2.gameobjects.Helipad helipad;
     private Point lineLocation;
     private double radianHeading;
@@ -20,6 +19,7 @@ public class Helicopter extends Movable{
     }
 
     public void init(){
+        this.color = ColorUtil.YELLOW;
         int height = Game.DISP_H / 50;
         int width = Game.DISP_W / 30;
         radianHeading = 0;
@@ -31,7 +31,7 @@ public class Helicopter extends Movable{
 
         location = new Point(
                 helipad.getLocation().getX() + width/2,
-                helipad.getLocation().getY() + height);
+                helipad.getLocation().getY() + height-600);
         lineLocation = new Point(
                 location.getX() + 25,
                 location.getY() - 100
@@ -45,6 +45,10 @@ public class Helicopter extends Movable{
     public int getFuel() { return fuel;}
 
     public int getSpeed() {return speed;}
+
+    public int getHeading() {
+        return heading;
+    }
 
     public void drinkWater(){
         if (speed <= 2 && water < 1000) {
@@ -150,20 +154,33 @@ public class Helicopter extends Movable{
     }
 
     @Override
+    public int getSize() {
+        return 0;
+    }
+
+    @Override
     public Dimension getSize(Dimension d) {
         return d;
     }
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
+        int x = containerOrigin.getX() +
+                location.getX();
+        int y = containerOrigin.getY() +
+                location.getY();
+        System.out.println(containerOrigin.getX());
+        System.out.println(containerOrigin.getY());
+        g.setColor(color);
+
 
         //drawing a filled circle and line relative to its location
-        g.fillArc(location.getX(),
-                location.getY(),
+        g.fillArc(x,
+                y,
                 50,50,
                 0,360);
-        g.drawLine(location.getX() + 25,
-                location.getY() + 25,
+        g.drawLine(x + 25,
+                y + 25,
 
                 //x1 y1 guarantees that the line starts
                 //in the center of the circle but the
@@ -171,12 +188,12 @@ public class Helicopter extends Movable{
                 lineLocation.getX(),
                 lineLocation.getY());
         g.drawString("Water: " + water,
-                location.getX(),
-                location.getY()  + 100);
+                x,
+                y  + 100);
 
         g.drawString("Fuel: " + fuel,
-                location.getX(),
-                location.getY() + 60);
+                x,
+                y + 60);
     }
 
     @Override

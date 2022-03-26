@@ -29,13 +29,10 @@ public class Game extends Form implements Runnable{
         cc = new ControlCluster(gw);
 
         this.setLayout(new BorderLayout());
-        this.add(gcp, BorderLayout.NORTH);
-        this.add(mv, BorderLayout.CENTER);
-        this.add(cc, BorderLayout.SOUTH);
+        this.add(BorderLayout.NORTH, gcp);
+        this.add(BorderLayout.CENTER, mv);
+        this.add(BorderLayout.SOUTH, cc);
 
-        //this.add(BorderLayout.NORTH, gcp);
-        //this.add(BorderLayout.CENTER, mv);
-        //this.add(BorderLayout.SOUTH, cc);
 /*
         addKeyListener('Q', (evt) -> gw.quit());
         addKeyListener( -91, (ActionListener) new AccelerateCommand(gw));
@@ -60,6 +57,7 @@ public class Game extends Form implements Runnable{
     public void run() {
         //gw.tick();
         repaint();
+        gcp.update();
         //mv.update();
     }
 }

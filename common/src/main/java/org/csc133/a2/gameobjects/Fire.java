@@ -17,6 +17,8 @@ public class Fire extends Fixed{
     }
 
     public void init(){
+        dim = new Dimension(50,50);
+        this.color = ColorUtil.MAGENTA;
         size = new Random().nextInt(500)+50;
         location = new Point(new Random().nextInt(Game.DISP_W),
                 new Random().nextInt(Game.DISP_H));
@@ -41,23 +43,28 @@ public class Fire extends Fixed{
     }
 
     @Override
-    public void draw(Graphics g, Point containerOrigin) {
+    public int getSize() {
+        return 0;
+    }
 
-        g.setColor(ColorUtil.MAGENTA);
+    @Override
+    public void draw(Graphics g, Point containerOrigin) {
+        int x = containerOrigin.getX() +
+                location.getX();
+        int y = containerOrigin.getY() +
+                location.getY();
+        g.setColor(color);
         if(size > 0) {
-            g.fillArc(location.getX(),
-                    location.getY(),
+            g.fillArc(x,
+                    y,
                     size, size,
                     0, 360);
             g.drawString ("" + size,
-                    location.getX() + size,
-                    location.getY() + size);
+                    x + size,
+                    y + size);
         }
     }
 
 
-    public Dimension getSize(Dimension d) {
-        return d;
-    }
 }
 
