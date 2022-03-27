@@ -33,15 +33,16 @@ public class Game extends Form implements Runnable{
         this.add(BorderLayout.CENTER, mv);
         this.add(BorderLayout.SOUTH, cc);
 
-/*
-        addKeyListener('Q', (evt) -> gw.quit());
-        addKeyListener( -91, (ActionListener) new AccelerateCommand(gw));
+        AccelerateCommand ac = new AccelerateCommand(gw);
+
+        addKeyListener('Q', new ExitCommand(gw));
+        addKeyListener( -91, new AccelerateCommand(gw));
         addKeyListener(-92, new BrakeCommand(gw));
-        addKeyListener(-93, new TurnLeftCmmand(gw));
+        addKeyListener(-93, new TurnLeftCommand(gw));
         addKeyListener(-94, new TurnRightCommand(gw));
         addKeyListener('f', new FightCommand(gw));
         addKeyListener('d', new DrinkCommand(gw));
-*/
+
         UITimer timer = new UITimer(this);
         timer.schedule(200, true, this);
 

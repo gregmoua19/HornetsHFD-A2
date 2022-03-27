@@ -13,6 +13,7 @@ public class GameWorld {
     //private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
+    private ArrayList<Building> buildings;
     private Helipad helipad;
     private River river;
     private int increment;
@@ -22,11 +23,20 @@ public class GameWorld {
         helicopter = new Helicopter();
         helipad = new Helipad();
         river = new River();
+        fires = new ArrayList<Fire>();
+        buildings = new ArrayList<Building>();
+
         allGameObjects = new ArrayList<>();
 
         allGameObjects.add(helicopter);
         allGameObjects.add(helipad);
         allGameObjects.add(river);
+        for(Fire fire: fires) {
+            allGameObjects.add(fire);
+        }
+        for(Building building: buildings) {
+            allGameObjects.add(building);
+        }
         //add buildings
 
         //add fires
@@ -131,13 +141,23 @@ public class GameWorld {
     }
 
     public String getFires() {
-        //how many fires in arraylist
-        return "0";
+        int counter = 0;
+        for (GameObject go : allGameObjects) {
+            if (go.toString() == "Fire") {
+                counter++;
+            }
+        }
+        return String.valueOf(counter);
     }
 
     public String getFireSize() {
-        //add all fires up
-        return "0";
+        int counter = 0;
+        for (GameObject go : allGameObjects) {
+            if (go.toString() == "Fire") {
+                counter += go.getSize();
+            }
+        }
+        return String.valueOf(counter);
     }
 
     public String getDamage() {
@@ -146,6 +166,10 @@ public class GameWorld {
 
     public String getLoss() {
         return "0";
+    }
+
+    public Helicopter getHelicopter() {
+        return helicopter;
     }
 }
 

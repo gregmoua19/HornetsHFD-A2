@@ -50,26 +50,6 @@ public class Helicopter extends Movable{
         return heading;
     }
 
-    public void drinkWater(){
-        if (speed <= 2 && water < 1000) {
-            water += 100;
-        }
-    }
-
-    //rather than making one method for speedup and
-    //another for slowdown, I chose to make one that
-    //use a boolean parameter to either increase or decrease
-    public void changeSpeed(boolean speedUp) {
-
-        //check speed first to make sure it's
-        //between 0-10 between allowing it to be changed
-        if(speedUp == false && speed > 0) {
-            speed -= 1;
-        } else if (speedUp == true && speed < 10) {
-            speed += 1;
-        }
-    }
-
     public void walk(){
 
         //take angle
@@ -115,35 +95,6 @@ public class Helicopter extends Movable{
 
     }
 
-    public void steer(boolean direction) {
-        //turn right so +15
-        if (direction) {
-
-            //conditionals to change heading by 15 degrees
-            //once it hits 360 it will jump to 15
-            if (heading == 360 || heading == 0) {
-                heading = 15;
-            } else {
-                heading += 15;
-            }
-            //turn left so -15
-        } else {
-
-            //conditionals to change heading by 15 degrees
-            //once it hits 0 it will jump to 345
-            if (heading == 0 || heading == 360) {
-                heading = 345;
-            } else {
-                heading -= 15;
-            }
-        }
-
-        //just like in easy clock the 24 represents 360/15
-        //meaning there are 24 possible places for the line to turn
-        //and the 15 is representative of which area was selected
-        radianHeading = Math.toRadians(360 / 24 * (heading / 15) + 90);
-    }
-
     @Override
     public boolean collidesWith(GameObject other) {
 
@@ -159,6 +110,11 @@ public class Helicopter extends Movable{
     }
 
     @Override
+    public String toString() {
+        return "Helicopter";
+    }
+
+    @Override
     public Dimension getSize(Dimension d) {
         return d;
     }
@@ -169,8 +125,6 @@ public class Helicopter extends Movable{
                 location.getX();
         int y = containerOrigin.getY() +
                 location.getY();
-        System.out.println(containerOrigin.getX());
-        System.out.println(containerOrigin.getY());
         g.setColor(color);
 
 
@@ -198,11 +152,37 @@ public class Helicopter extends Movable{
 
     @Override
     public void steerLeft() {
+        if (heading == 0 || heading == 360) {
+            heading = 345;
+        } else {
+            heading -= 15;
+        }
+        radianHeading = Math.toRadians(360 / 24 * (heading / 15) + 90);
 
     }
 
     @Override
     public void steerRight() {
+        if (heading == 360 || heading == 0) {
+            heading = 15;
+        } else {
+            heading += 15;
+        }
+        radianHeading = Math.toRadians(360 / 24 * (heading / 15) + 90);
 
+    }
+
+    public void speedUp(boolean direction) {
+        if(direction && speed < 10) {
+            this.speed += 1;
+        } else if (direction == false && speed > 0){
+            this.speed -= 1;
+        }
+    }
+
+    public void drink() {
+        if(water < 1000 && speed <= 2) {
+            this.water += 100;
+        }
     }
 }

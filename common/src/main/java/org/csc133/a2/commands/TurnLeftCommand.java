@@ -4,16 +4,15 @@ import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
 import org.csc133.a2.GameWorld;
 
-public class ExitCommand<Gameworld> extends Command {
+public class TurnLeftCommand extends Command {
     GameWorld gw;
-
-    public ExitCommand(GameWorld gw) {
-        super("Exit");
+    public TurnLeftCommand(GameWorld gw) {
+        super("Left");
         this.gw = gw;
     }
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        gw.quit();
+        gw.getHelicopter().steerLeft();
     }
 }

@@ -44,4 +44,6 @@ public abstract class GameObject implements Drawable {
     public void changeColor(int color) {
         this.color = color;
     }
+
+    public abstract String toString();
 }

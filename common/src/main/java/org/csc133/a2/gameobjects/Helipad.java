@@ -55,6 +55,11 @@ public class Helipad extends Fixed{
     }
 
     @Override
+    public String toString() {
+        return "Helipad";
+    }
+
+    @Override
     public void draw(Graphics g, Point containerOrigin) {
         draw(g);
     }

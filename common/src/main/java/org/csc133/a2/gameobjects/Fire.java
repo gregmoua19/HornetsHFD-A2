@@ -37,6 +37,8 @@ public class Fire extends Fixed{
 
     }
 
+
+
     @Override
     public boolean collidesWith(GameObject other) {
         return false;
@@ -45,6 +47,11 @@ public class Fire extends Fixed{
     @Override
     public int getSize() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Fire";
     }
 
     @Override

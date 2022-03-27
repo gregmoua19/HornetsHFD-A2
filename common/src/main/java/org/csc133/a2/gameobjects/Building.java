@@ -29,6 +29,11 @@ public class Building extends Fixed{
     }
 
     @Override
+    public String toString() {
+        return "Building";
+    }
+
+    @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
     }

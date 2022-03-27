@@ -15,6 +15,7 @@ public class River extends Fixed{
     }
 
     public void init() {
+        dim = new Dimension(Game.DISP_W,Game.DISP_W/3);
         this.color = ColorUtil.BLUE;
         location = new Point(0,
                 Game.DISP_H / 3);
@@ -33,6 +34,11 @@ public class River extends Fixed{
     @Override
     public int getSize() {
         return this.getDim().getHeight();
+    }
+
+    @Override
+    public String toString() {
+        return "River";
     }
 
     @Override
