@@ -1,6 +1,7 @@
 package org.csc133.a2.views;
 
 import com.codename1.ui.Container;
+import com.codename1.ui.Font;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.GridLayout;
 import org.csc133.a2.GameWorld;
@@ -43,6 +44,7 @@ public class GlassCockpit extends Container {
         this.add(damage);
         this.add(loss);
 
+        this.getAllStyles().setBgTransparency(255);
     }
 
     public void update() {

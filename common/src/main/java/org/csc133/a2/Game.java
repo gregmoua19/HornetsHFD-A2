@@ -1,6 +1,7 @@
 package org.csc133.a2;
 
 import com.codename1.charts.util.ColorUtil;
+import com.codename1.ui.Button;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Graphics;
@@ -12,6 +13,8 @@ import org.csc133.a2.gameobjects.GameObject;
 import org.csc133.a2.views.ControlCluster;
 import org.csc133.a2.views.GlassCockpit;
 import org.csc133.a2.views.MapView;
+
+import javax.swing.border.Border;
 
 public class Game extends Form implements Runnable{
     private GameWorld gw;
@@ -33,8 +36,6 @@ public class Game extends Form implements Runnable{
         this.add(BorderLayout.CENTER, mv);
         this.add(BorderLayout.SOUTH, cc);
 
-        AccelerateCommand ac = new AccelerateCommand(gw);
-
         addKeyListener('Q', new ExitCommand(gw));
         addKeyListener( -91, new AccelerateCommand(gw));
         addKeyListener(-92, new BrakeCommand(gw));
@@ -43,9 +44,10 @@ public class Game extends Form implements Runnable{
         addKeyListener('f', new FightCommand(gw));
         addKeyListener('d', new DrinkCommand(gw));
 
+
+
         UITimer timer = new UITimer(this);
         timer.schedule(200, true, this);
-
         this.getAllStyles().setBgColor(ColorUtil.BLACK);
         this.show();
     }

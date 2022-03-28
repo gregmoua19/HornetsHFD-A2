@@ -8,7 +8,6 @@ import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.Graphics;
 
 public class Helicopter extends Movable{
-    private Point location;
     private int fuel;
     private int water;
     private org.csc133.a2.gameobjects.Helipad helipad;
@@ -29,17 +28,13 @@ public class Helicopter extends Movable{
         helipad = new org.csc133.a2.gameobjects.Helipad();
         heading = 0;
 
-        location = new Point(
-                helipad.getLocation().getX() + width/2,
-                helipad.getLocation().getY() + height-600);
+        point = new Point(
+                helipad.getPoint().getX() + width/2,
+                helipad.getPoint().getY() + height-600);
         lineLocation = new Point(
-                location.getX() + 25,
-                location.getY() - 100
+                point.getX() + 25,
+                point.getY() - 100
         );
-    }
-
-    public Point getLocation() {
-        return location;
     }
 
     public int getFuel() { return fuel;}
@@ -64,33 +59,33 @@ public class Helicopter extends Movable{
         //181 to 269
         //271 to 359 AKA 0-1
         //specific conditionals for 0,90,180,270 implemented
-        int decX = (int)(location.getX() - speed*2*Math.cos(radianHeading));
-        int decY = (int)(location.getY() - speed*2*Math.sin(radianHeading));
+        int decX = (int)(point.getX() - speed*2*Math.cos(radianHeading));
+        int decY = (int)(point.getY() - speed*2*Math.sin(radianHeading));
         if(heading > 0 && heading < 90) {
-            location.setX(decX);
-            location.setY(decY);
+            point.setX(decX);
+            point.setY(decY);
         } else if (heading > 90 && heading < 180) {
-            location.setX(decX);
-            location.setY(decY);
+            point.setX(decX);
+            point.setY(decY);
         } else if (heading > 180 && heading < 270) {
-            location.setX(decX);
-            location.setY(decY);
+            point.setX(decX);
+            point.setY(decY);
         } else if (heading > 270){
-            location.setX(decX);
-            location.setY(decY);
+            point.setX(decX);
+            point.setY(decY);
         } else if (heading == 0){
-            location.setY(decY);
+            point.setY(decY);
         } else if (heading == 90) {
-            location.setX(decX);
+            point.setX(decX);
         } else if (heading == 180) {
-            location.setY(decY);
+            point.setY(decY);
         } else if (heading == 270) {
-            location.setX(decX);
+            point.setX(decX);
         }
 
-        lineLocation.setX((int)((location.getX() + 25)
+        lineLocation.setX((int)((point.getX() + 25)
                 - 80 * Math.cos(radianHeading)));
-        lineLocation.setY((int)((location.getY() + 25)
+        lineLocation.setY((int)((point.getY() + 25)
                 - 80 * Math.sin(radianHeading)));
 
     }
@@ -98,10 +93,10 @@ public class Helicopter extends Movable{
     @Override
     public boolean collidesWith(GameObject other) {
 
-        return (other.getPoint().getY() <= location.getY())
-                && (other.getPoint().getY() + other.getDim().getHeight() >= location.getY())
-                && (other.getPoint().getX() <= location.getX())
-                && (other.getPoint().getX() + other.getDim().getWidth() >= location.getX());
+        return (other.getPoint().getY() <= point.getY())
+                && (other.getPoint().getY() + other.getDim().getHeight() >= point.getY())
+                && (other.getPoint().getX() <= point.getX())
+                && (other.getPoint().getX() + other.getDim().getWidth() >= point.getX());
     }
 
     @Override
@@ -122,9 +117,9 @@ public class Helicopter extends Movable{
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         int x = containerOrigin.getX() +
-                location.getX();
+                point.getX();
         int y = containerOrigin.getY() +
-                location.getY();
+                point.getY();
         g.setColor(color);
 
 

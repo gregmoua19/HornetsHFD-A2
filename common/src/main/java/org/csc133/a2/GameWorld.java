@@ -1,10 +1,12 @@
 package org.csc133.a2;
 
 import com.codename1.ui.*;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.gameobjects.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -17,25 +19,80 @@ public class GameWorld {
     private Helipad helipad;
     private River river;
     private int increment;
+    private int NUMBER_OF_BUILDINGS;
+    private int NUMBER_OF_FIRES;
 
     //constructor to make and then add everything to items
     public GameWorld(){
+        NUMBER_OF_BUILDINGS = 3;
+        Random rand = new Random();
         helicopter = new Helicopter();
         helipad = new Helipad();
         river = new River();
-        fires = new ArrayList<Fire>();
-        buildings = new ArrayList<Building>();
-
+        NUMBER_OF_FIRES = rand.nextInt(7) + 6;
+        fires = new ArrayList<>();
+        buildings = new ArrayList<>();
+        for(int i = 0; i < NUMBER_OF_FIRES;i++) {
+            System.out.println("init fire loop " + i);
+            fires.add(new Fire());
+        }
+        for(int i = 0; i < NUMBER_OF_BUILDINGS;i++) {
+            System.out.println("init building loop " + i);
+            buildings.add(new Building());
+        }
+        int fireCounter = 0;
+        System.out.println(buildings.size());
+        System.out.println(fires.size());
         allGameObjects = new ArrayList<>();
 
         allGameObjects.add(helicopter);
         allGameObjects.add(helipad);
         allGameObjects.add(river);
-        for(Fire fire: fires) {
-            allGameObjects.add(fire);
+
+        for(int i = 0; i < NUMBER_OF_BUILDINGS;i++) {
+            System.out.println("Building loop executed");
+            if(i == 0) {
+                buildings.get(i).setPoint(new Point(Game.DISP_W/5, 5*Game.DISP_H/10));
+                buildings.get(i).setDim(new Dimension(Game.DISP_W/10, Game.DISP_H/4));
+            } else if (i == 1) {
+                buildings.get(i).setPoint(new Point(Game.DISP_W/4 , Game.DISP_H/15));
+                buildings.get(i).setDim(new Dimension(Game.DISP_W/10, Game.DISP_H/2));
+            } else {
+                buildings.get(i).setPoint(new Point(3 * Game.DISP_W/5, 4 * Game.DISP_H/9 ));
+                buildings.get(i).setDim(new Dimension(Game.DISP_W/9, Game.DISP_H/5));
+            }
+
+            allGameObjects.add(buildings.get(i));
         }
-        for(Building building: buildings) {
-            allGameObjects.add(building);
+        for(int i = 0; i < NUMBER_OF_FIRES;i++) {
+            System.out.println("Fire loop executed");
+            //if 1/3 fire set in left building
+            if(fireCounter < (NUMBER_OF_FIRES / 3) + 1) {
+                fires.get(i).setLocation(new Point(rand.nextInt(
+                        buildings.get(0).getPoint().getX())+
+                        buildings.get(0).getDim().getWidth(),rand.nextInt(
+                        buildings.get(0).getPoint().getY())+
+                        buildings.get(0).getDim().getHeight()));
+            } else if (fireCounter < ((NUMBER_OF_FIRES / 3) * 2) + 1) {
+                fires.get(i).setLocation(new Point(rand.nextInt(
+                        buildings.get(1).getPoint().getX())+
+                        buildings.get(1).getDim().getWidth(),rand.nextInt(
+                        buildings.get(1).getPoint().getY())+
+                        buildings.get(1).getDim().getHeight()));
+            } else {
+                fires.get(i).setLocation(new Point(rand.nextInt(
+                        buildings.get(2).getPoint().getX())+
+                        buildings.get(2).getDim().getWidth(),rand.nextInt(
+                        buildings.get(2).getPoint().getY())+
+                        buildings.get(2).getDim().getHeight()));
+            }
+
+            //else if 2/3 fire set in top  building
+
+            //else set in right building
+
+            fireCounter++;
+            allGameObjects.add(fires.get(i));
         }
         //add buildings
 
@@ -105,8 +162,8 @@ public class GameWorld {
  */
 
     public boolean landCopter(){
-        Point copter = helicopter.getLocation();
-        Point pad = helipad.getLocation();
+        Point copter = helicopter.getPoint();
+        Point pad = helipad.getPoint();
         int pWidth = Game.DISP_W/10;
         int pLength = Game.DISP_W/10;
 
@@ -125,6 +182,10 @@ public class GameWorld {
 
 
     public ArrayList<GameObject> getGameObjectCollection(){
+        for(GameObject go : allGameObjects) {
+            System.out.print(go.toString() + " ");
+        }
+        System.out.println("");
         return allGameObjects;
     }
 

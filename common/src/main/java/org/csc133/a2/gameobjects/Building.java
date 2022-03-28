@@ -14,6 +14,8 @@ public class Building extends Fixed{
         this.color = ColorUtil.rgb(255,0,0);
         damage = 0;
         value = 10000;
+        point = new Point(1,1);
+        dim = new Dimension(1,1);
 
     }
 
@@ -36,9 +38,11 @@ public class Building extends Fixed{
     @Override
     public void draw(Graphics g, Point containerOrigin) {
         g.setColor(color);
+        g.drawRect(point.getX(),point.getY(),dim.getWidth(),dim.getHeight());
     }
 
     public void setFireinBuilding(Fire fire) {
-
+        //fire.setLocation();
+        fire.start();
     }
 }
