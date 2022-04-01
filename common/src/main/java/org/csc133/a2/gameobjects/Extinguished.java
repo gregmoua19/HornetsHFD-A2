@@ -7,16 +7,14 @@ public class Extinguished implements FireState{
     private Extinguished() {};
 
     public static Extinguished instance(){
-        System.out.println("I am now extinguished");
         return instance;
     }
 
-    public void message() {
-        System.out.println("I have been extinguished");
+    public String toString() {
+        return "Extinguished";
     }
 
     @Override
     public void updateState(Fire fire) {
-        System.out.println("Extinguished to ??? ");
     }
 }

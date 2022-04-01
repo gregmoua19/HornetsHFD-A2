@@ -14,7 +14,7 @@ public class River extends Fixed{
     }
 
     public void init() {
-        dim = new Dimension(Game.DISP_W,Game.DISP_W/3);
+        dim = new Dimension(Game.DISP_W,Game.DISP_W/10);
         this.color = ColorUtil.BLUE;
         point = new Point(0,
                 Game.DISP_H / 5);

@@ -13,6 +13,8 @@ public class DrinkCommand extends Command {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-        gw.getHelicopter().drink();
+        if(gw.getHelicopter().collidesWith(gw.getGameObjectCollection().get(5))) {
+            gw.getHelicopter().drink();
+        }
     }
 }

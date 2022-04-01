@@ -22,14 +22,14 @@ public class Fire extends Fixed{
 
     public void init(){
         this.color = ColorUtil.MAGENTA;
-        size = 0;
+        size = 1;
         dim = new Dimension(size,size);
         point = new Point(new Random().nextInt(Game.DISP_W),
                 new Random().nextInt(Game.DISP_H));
     }
 
     public void grow(){
-        size += new Random().nextInt(2);
+            size += new Random().nextInt(2);
     }
 
     public void setLocation(Point point){
@@ -45,7 +45,10 @@ public class Fire extends Fixed{
 
     @Override
     public boolean collidesWith(GameObject other) {
-        return false;
+        return (other.getPoint().getY() <= point.getY())
+                && (other.getPoint().getY() + other.getDim().getHeight() >= point.getY())
+                && (other.getPoint().getX() <= point.getX())
+                && (other.getPoint().getX() + other.getDim().getWidth() >= point.getX());
     }
 
 
@@ -54,6 +57,7 @@ public class Fire extends Fixed{
         dim.setHeight(size);
         this.size = size;
     }
+
 
     @Override
     public int getSize() {

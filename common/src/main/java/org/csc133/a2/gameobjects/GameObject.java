@@ -15,12 +15,18 @@ public abstract class GameObject implements Drawable {
      int budgetArea;
      int building;
      int value;
+     int damage;
 
     //Init method
     public abstract void init();
 
     //Collision method
-    public abstract boolean collidesWith(GameObject other);
+    public boolean collidesWith(GameObject other) {
+        return (other.getPoint().getY() <= point.getY())
+                && (other.getPoint().getY() + other.getDim().getHeight() >= point.getY())
+                && (other.getPoint().getX() <= point.getX())
+                && (other.getPoint().getX() + other.getDim().getWidth() >= point.getX());
+    }
 
     public abstract int getSize();
 
@@ -59,4 +65,15 @@ public abstract class GameObject implements Drawable {
     }
 
     public abstract String toString();
+
+    protected void setSize(int size) {
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    protected void setState(Extinguished instance) {
+    }
+
 }

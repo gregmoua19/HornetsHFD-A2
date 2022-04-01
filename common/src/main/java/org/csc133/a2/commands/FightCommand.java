@@ -2,6 +2,7 @@ package org.csc133.a2.commands;
 
 import com.codename1.ui.Command;
 import com.codename1.ui.events.ActionEvent;
+import org.csc133.a2.Game;
 import org.csc133.a2.GameWorld;
 import org.csc133.a2.gameobjects.GameObject;
 
@@ -16,6 +17,10 @@ public class FightCommand extends Command {
 
     @Override
     public void actionPerformed(ActionEvent ev) {
-
+    for(GameObject go : gw.getGameObjectCollection()) {
+        if (gw.getHelicopter().collidesWith(go) && go.toString() == "Fire") {
+            gw.getHelicopter().fight(go);
+        }
+    }
     }
 }

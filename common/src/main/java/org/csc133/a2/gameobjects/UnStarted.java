@@ -6,17 +6,14 @@ public class UnStarted implements FireState{
     private UnStarted(){};
 
     public static UnStarted instance() {
-        System.out.println("Unstarted");
         return instance;
     }
 
-    public static void message() {
-        System.out.println("I am unstarted.");
+    public String toString() {
+        return "UnStarted";
     }
-
     @Override
     public void updateState(Fire fire) {
-        System.out.println("Unstarted now burning");
         fire.setState(Burning.instance());
     }
 }

@@ -93,12 +93,15 @@ public class Helicopter extends Movable{
 
     @Override
     public boolean collidesWith(GameObject other) {
-        System.out.println("Heli is colliding with " + other.toString());
+        if(other.toString() == "River") {
+            return collidesWithRiver((River)other);
+        }
 
-        return (other.getPoint().getY() <= point.getY())
-                && (other.getPoint().getY() + other.getDim().getHeight() >= point.getY())
-                && (other.getPoint().getX() <= point.getX())
-                && (other.getPoint().getX() + other.getDim().getWidth() >= point.getX());
+        if(other.toString() == "Fire") {
+            return collidesWithFire((Fire)other);
+        }
+
+        return false;
     }
 
     @Override
@@ -173,5 +176,32 @@ public class Helicopter extends Movable{
         if(water < 1000 && speed <= 2) {
             this.water += 100;
         }
+    }
+
+    public void fight(GameObject fire) {
+        if (collidesWithFire(fire)) {
+            water -= fire.getSize();
+            fire.setSize(-water/100);
+            if (water < 0) {
+                water = 0;
+            }
+            if(fire.getSize() <= 0) {
+                fire.setState(Extinguished.instance());
+            }
+        }
+    }
+    public boolean collidesWithRiver(River river) {
+        int YRiver = river.getPoint().getY();
+        return (YRiver <= point.getY()) &&
+                YRiver+ river.getDim().getHeight()>= point.getY();
+    }
+
+    public boolean collidesWithFire(GameObject fire) {
+        int fireXLoc = fire.getPoint().getX();
+        int fireYLoc = fire.getPoint().getY();
+        return (fireYLoc <= point.getY())
+                && (fireYLoc + fire.getSize() >= point.getY())
+                && (fireXLoc <= point.getX())
+                && (fireXLoc + fire.getSize() >= point.getX());
     }
 }

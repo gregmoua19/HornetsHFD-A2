@@ -116,15 +116,30 @@ public class GameWorld {
         Display.getInstance().exitApplication();
     }
 
+    void init() {
+        new Game().show();
+    }
     public void tick() {
 
-        /*//if all fires out and speed is 0
+        //if all fires out and speed is 0
         //and resting on helipad you win
-        if (allFiresOut(fires) && helicopter.getSpeed() == 0 && landCopter()) {
+        boolean allFiresOut = false;
+        for(GameObject go: allGameObjects) {
+            if(go.toString() == "Fire") {
+                if (go.getSize() > 0) {
+                    allFiresOut = true;
+                }
+            }
+        }
+        if (allFiresOut == false && helicopter.getSpeed() == 0 && landCopter()) {
             //victory condition
             //ask to play again or quit
+            int score = 0;
+            for(int i = 0 ; i < 3; i ++) {
+                score += allGameObjects.get(i).getValue();
+            }
             if(Dialog.show("You win",
-                    "Your score: " + helicopter.getFuel(),
+                    "Your score: " + score,
                     "Play again", "Quit")){
                 init();
             }else{
@@ -146,18 +161,12 @@ public class GameWorld {
             }
         } else {
         }
-*/
+
         //move around
             for (GameObject go : allGameObjects) {
                 if(increment % 2 == 0) {
                     if (go.toString().equals("Fire")) {
                         go.grow();
-                    }
-                }
-
-                if(go.toString().equals("Fire")) {
-                    for(int i = 0;i < NUMBER_OF_FIRES; i++) {
-
                     }
                 }
             }
@@ -169,19 +178,15 @@ public class GameWorld {
     }
 
     public boolean landCopter(){
-        Point copter = helicopter.getPoint();
-        Point pad = helipad.getPoint();
-        int pWidth = Game.DISP_W/10;
-        int pLength = Game.DISP_W/10;
 
         //this conditional makes sure the location of the helicopter is
         //within the helipad
         //if copter.getX is > pad.getX but less than pad.getX + its width
         //and copter.getY is > pad.getY but less than pad.getY + its length
-        if((copter.getX() > pad.getX()
-                && copter.getX() < (pad.getX() + pWidth))
-                && copter.getY() > pad.getY()
-                && copter.getY() < pad.getY() + pLength){
+        if((helicopter.getPoint().getX() > helipad.getPoint().getX()
+                && helicopter.getPoint().getX() < (helipad.getPoint().getX() + helipad.getDim().getWidth()))
+                && helicopter.getPoint().getY() > helipad.getPoint().getY()
+                && helicopter.getPoint().getY() < helipad.getPoint().getY() + helipad.getDim().getHeight()){
             return true;
         }
         return false;
@@ -189,10 +194,6 @@ public class GameWorld {
 
 
     public ArrayList<GameObject> getGameObjectCollection(){
-        for(GameObject go : allGameObjects) {
-            //System.out.print(go.toString() + " ");
-        }
-        //System.out.println("");
         return allGameObjects;
     }
 
@@ -258,6 +259,9 @@ public class GameWorld {
         average1 /= 10;
         average2 /= 10;
         average3 /= 10;
+        allGameObjects.get(0).setDamage((int)average1);
+        allGameObjects.get(1).setDamage((int)average2);
+        allGameObjects.get(2).setDamage((int)average3);
         int all = (int) ((average1 + average2 + average3) / 3);
         return String.valueOf(all);
     }
