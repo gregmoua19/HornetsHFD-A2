@@ -12,7 +12,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GameWorld {
     private ArrayList<GameObject> allGameObjects;
-    //private final int NUMBER_OF_FIRES = 3;
     private Helicopter helicopter;
     private ArrayList<Fire> fires;
     private ArrayList<Building> buildings;
@@ -21,6 +20,7 @@ public class GameWorld {
     private int increment;
     private int NUMBER_OF_BUILDINGS;
     private int NUMBER_OF_FIRES;
+    private double TOTAL_LOSS;
 
     //constructor to make and then add everything to items
     public GameWorld(){
@@ -29,88 +29,96 @@ public class GameWorld {
         helicopter = new Helicopter();
         helipad = new Helipad();
         river = new River();
-        NUMBER_OF_FIRES = rand.nextInt(7) + 6;
+        NUMBER_OF_FIRES = rand.nextInt(5)+6;
         fires = new ArrayList<>();
         buildings = new ArrayList<>();
+        TOTAL_LOSS = 0;
+
+        //initialize fires as unstarted and give
+        //them a random size but no point
         for(int i = 0; i < NUMBER_OF_FIRES;i++) {
-            System.out.println("init fire loop " + i);
-            fires.add(new Fire());
+            fires.add(new Fire(UnStarted.instance()));
+            fires.get(i).setSize(rand.nextInt(5)+7);
         }
+
+        //create buildings with randomized value
         for(int i = 0; i < NUMBER_OF_BUILDINGS;i++) {
-            System.out.println("init building loop " + i);
-            buildings.add(new Building());
+            buildings.add(new Building((rand.nextInt(10)+1) * 100));
         }
+
         int fireCounter = 0;
-        System.out.println(buildings.size());
-        System.out.println(fires.size());
+
         allGameObjects = new ArrayList<>();
 
-        allGameObjects.add(helicopter);
-        allGameObjects.add(helipad);
-        allGameObjects.add(river);
 
+        //for loop for determining where the buildings will be placed
         for(int i = 0; i < NUMBER_OF_BUILDINGS;i++) {
-            System.out.println("Building loop executed");
             if(i == 0) {
-                buildings.get(i).setPoint(new Point(Game.DISP_W/5, 5*Game.DISP_H/10));
-                buildings.get(i).setDim(new Dimension(Game.DISP_W/10, Game.DISP_H/4));
+                buildings.get(i).setPoint(
+                        new Point(
+                                Game.DISP_W/8,
+                                2*Game.DISP_H/5));
+                buildings.get(i).setDim(
+                        new Dimension(
+                                Game.DISP_W/10,
+                                2*Game.DISP_H/5));
             } else if (i == 1) {
-                buildings.get(i).setPoint(new Point(Game.DISP_W/4 , Game.DISP_H/15));
-                buildings.get(i).setDim(new Dimension(Game.DISP_W/10, Game.DISP_H/2));
+                buildings.get(i).setPoint(
+                        new Point(
+                                Game.DISP_W/4,
+                                Game.DISP_H/15));
+                buildings.get(i).setDim(
+                        new Dimension(
+                                Game.DISP_W/2,
+                                Game.DISP_H/10));
             } else {
-                buildings.get(i).setPoint(new Point(3 * Game.DISP_W/5, 4 * Game.DISP_H/9 ));
-                buildings.get(i).setDim(new Dimension(Game.DISP_W/9, Game.DISP_H/5));
+                buildings.get(i).setPoint(
+                        new Point(
+                                4 * Game.DISP_W/5,
+                                4 * Game.DISP_H/9 ));
+                buildings.get(i).setDim(
+                        new Dimension(
+                                Game.DISP_W/9,
+                                Game.DISP_H/4));
             }
 
             allGameObjects.add(buildings.get(i));
         }
+
+        allGameObjects.add(helicopter);
+        allGameObjects.add(helipad);
+        allGameObjects.add(river);
         for(int i = 0; i < NUMBER_OF_FIRES;i++) {
-            System.out.println("Fire loop executed");
+            int temp;
             //if 1/3 fire set in left building
             if(fireCounter < (NUMBER_OF_FIRES / 3) + 1) {
-                fires.get(i).setLocation(new Point(rand.nextInt(
-                        buildings.get(0).getPoint().getX())+
-                        buildings.get(0).getDim().getWidth(),rand.nextInt(
-                        buildings.get(0).getPoint().getY())+
-                        buildings.get(0).getDim().getHeight()));
-            } else if (fireCounter < ((NUMBER_OF_FIRES / 3) * 2) + 1) {
-                fires.get(i).setLocation(new Point(rand.nextInt(
-                        buildings.get(1).getPoint().getX())+
-                        buildings.get(1).getDim().getWidth(),rand.nextInt(
-                        buildings.get(1).getPoint().getY())+
-                        buildings.get(1).getDim().getHeight()));
-            } else {
-                fires.get(i).setLocation(new Point(rand.nextInt(
-                        buildings.get(2).getPoint().getX())+
-                        buildings.get(2).getDim().getWidth(),rand.nextInt(
-                        buildings.get(2).getPoint().getY())+
-                        buildings.get(2).getDim().getHeight()));
-            }
+                fires.get(i).setBuilding(0);
+                buildings.get(0).setFireinBuilding(fires.get(i));
 
             //else if 2/3 fire set in top  building
+            } else if (fireCounter < ((NUMBER_OF_FIRES / 3) * 2) + 1) {
+                fires.get(i).setBuilding(1);
+                buildings.get(1).setFireinBuilding(fires.get(i));
 
-            //else set in right building
+                //else set in right building
+            } else {
+                fires.get(i).setBuilding(2);
+                buildings.get(2).setFireinBuilding(fires.get(i));
+
+            }
 
             fireCounter++;
             allGameObjects.add(fires.get(i));
         }
-        //add buildings
-
-        //add fires
-    }
-
-    void init() {
-        new Game().show();
     }
 
     public void quit() {
         Display.getInstance().exitApplication();
     }
 
-/*
     public void tick() {
 
-        //if all fires out and speed is 0
+        /*//if all fires out and speed is 0
         //and resting on helipad you win
         if (allFiresOut(fires) && helicopter.getSpeed() == 0 && landCopter()) {
             //victory condition
@@ -137,29 +145,28 @@ public class GameWorld {
                 quit();
             }
         } else {
+        }
+*/
+        //move around
+            for (GameObject go : allGameObjects) {
+                if(increment % 2 == 0) {
+                    if (go.toString().equals("Fire")) {
+                        go.grow();
+                    }
+                }
 
-            //else grow the fires by random amount 1-5
-            //
-            for(int i = 0; i < NUMBER_OF_FIRES; i ++) {
-                int randomSize = 0;
-                randomSize = new Random().nextInt(3);
-                if (increment % 9 == 0) {
-                    fires.get(0).setSize(fires.get(0).getSize() + randomSize);
-                } else if (increment % 10 == 0) {
-                    fires.get(1).setSize(fires.get(1).getSize() + randomSize);
-                } else if (increment % 11 == 0){
-                    fires.get(2).setSize(fires.get(2).getSize() + randomSize);
+                if(go.toString().equals("Fire")) {
+                    for(int i = 0;i < NUMBER_OF_FIRES; i++) {
+
+                    }
                 }
             }
 
 
-        }
-
-        //move around
         helicopter.walk();
         increment++;
+
     }
- */
 
     public boolean landCopter(){
         Point copter = helicopter.getPoint();
@@ -183,9 +190,9 @@ public class GameWorld {
 
     public ArrayList<GameObject> getGameObjectCollection(){
         for(GameObject go : allGameObjects) {
-            System.out.print(go.toString() + " ");
+            //System.out.print(go.toString() + " ");
         }
-        System.out.println("");
+        //System.out.println("");
         return allGameObjects;
     }
 
@@ -214,19 +221,74 @@ public class GameWorld {
     public String getFireSize() {
         int counter = 0;
         for (GameObject go : allGameObjects) {
-            if (go.toString() == "Fire") {
+            if (go.toString().equals("Fire")) {
                 counter += go.getSize();
             }
         }
         return String.valueOf(counter);
     }
 
+    //going to seperate fire sizes to calculate
+    //average damage per building
     public String getDamage() {
-        return "0";
+
+        //individual size variables for each building
+        double average1 = 0;
+        double average2 = 0;
+        double average3 = 0;
+
+        for (GameObject go : allGameObjects) {
+
+            //verify GameObject is Fire
+            if (go.toString().equals("Fire")) {
+
+                //Check if connected to building 0, 1, or 2
+                if(go.getBuilding() == 0) {
+                    average1 += go.getSize();
+                } else if (go.getBuilding() == 1) {
+                    average2 += go.getSize();
+                } else {
+                    average3 += go.getSize();
+                }
+            }
+        }
+        //size /= 1000 to calculate damage then
+        //size *= 100 for percentage conversion
+        //so we can instead use size /= 10
+        average1 /= 10;
+        average2 /= 10;
+        average3 /= 10;
+        int all = (int) ((average1 + average2 + average3) / 3);
+        return String.valueOf(all);
     }
 
     public String getLoss() {
-        return "0";
+        double average1 = 0;
+        double average2 = 0;
+        double average3 = 0;
+        for (GameObject go : allGameObjects) {
+
+            //verify GameObject is Fire
+            if (go.toString().equals("Fire")) {
+
+                //Check if connected to building 0, 1, or 2
+                if(go.getBuilding() == 0) {
+                    average1 += go.getSize();
+                } else if (go.getBuilding() == 1) {
+                    average2 += go.getSize();
+                } else {
+                    average3 += go.getSize();
+                }
+            }
+        }
+
+        average1 /= 1000;
+        average2 /= 1000;
+        average3 /= 1000;
+        TOTAL_LOSS += average1;
+        TOTAL_LOSS += average2;
+        TOTAL_LOSS += average3;
+        return String.valueOf((int)TOTAL_LOSS);
     }
 
     public Helicopter getHelicopter() {

@@ -12,6 +12,9 @@ public abstract class GameObject implements Drawable {
      Point point;
      Dimension dim;
      int color;
+     int budgetArea;
+     int building;
+     int value;
 
     //Init method
     public abstract void init();
@@ -37,12 +40,22 @@ public abstract class GameObject implements Drawable {
         this.dim = dim;
     }
 
-    public int getColor() {
-        return color;
+    public void grow() {
     }
 
-    public void changeColor(int color) {
-        this.color = color;
+    public int getBudgetArea(){
+        return budgetArea;
+    }
+
+    public int getBuilding(){
+        return building;
+    }
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value){
+        this.value = value;
     }
 
     public abstract String toString();

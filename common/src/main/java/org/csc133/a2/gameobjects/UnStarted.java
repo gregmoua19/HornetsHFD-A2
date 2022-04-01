@@ -1,11 +1,12 @@
 package org.csc133.a2.gameobjects;
 
-public class UnStarted extends Fire2{
+public class UnStarted implements FireState{
     private static UnStarted instance = new UnStarted();
 
     private UnStarted(){};
 
-    public static UnStarted getUnstarted() {
+    public static UnStarted instance() {
+        System.out.println("Unstarted");
         return instance;
     }
 
@@ -14,6 +15,8 @@ public class UnStarted extends Fire2{
     }
 
     @Override
-    public void updateState(Fire2 fire) {
+    public void updateState(Fire fire) {
+        System.out.println("Unstarted now burning");
+        fire.setState(Burning.instance());
     }
 }

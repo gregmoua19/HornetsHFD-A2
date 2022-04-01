@@ -53,7 +53,7 @@ public class GlassCockpit extends Container {
         fuel.setText(gw.getFuel());
         fires.setText(gw.getFires());
         fireSize.setText(gw.getFireSize());
-        damage.setText(gw.getDamage());
+        damage.setText(gw.getDamage() + "%");
         loss.setText(gw.getLoss());
     }
 

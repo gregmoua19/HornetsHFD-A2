@@ -58,9 +58,11 @@ public class Game extends Form implements Runnable{
 
     @Override
     public void run() {
-        //gw.tick();
+        gw.tick();
         repaint();
         gcp.update();
+        mv.update();
+        cc.update();
         //mv.update();
     }
 }

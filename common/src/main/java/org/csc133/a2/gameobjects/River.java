@@ -17,7 +17,7 @@ public class River extends Fixed{
         dim = new Dimension(Game.DISP_W,Game.DISP_W/3);
         this.color = ColorUtil.BLUE;
         point = new Point(0,
-                Game.DISP_H / 3);
+                Game.DISP_H / 5);
 
     }
 
@@ -38,11 +38,11 @@ public class River extends Fixed{
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        System.out.println("River container origin X: " + containerOrigin.getX());
-        System.out.println("River container origin Y: " + containerOrigin.getY());
+        //.out.println("River container origin X: " + containerOrigin.getX());
+        //System.out.println("River container origin Y: " + containerOrigin.getY());
         g.setColor(color);
-        g.drawRect(point.getX(), point.getY(),
-                Game.DISP_W,
-                Game.DISP_H / 10);
+        int offX = point.getX() + containerOrigin.getX();
+        int offY = point.getY() + containerOrigin.getY();
+        g.drawRect(offX, offY, Game.DISP_W,Game.DISP_H / 10);
     }
 }

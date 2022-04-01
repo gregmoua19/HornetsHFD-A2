@@ -9,15 +9,20 @@ import org.csc133.a2.Game;
 import java.util.Random;
 
 public class Fire extends Fixed{
+    private FireState currentState;
     private int size;
+    private int area;
+    private int building;
 
-    public Fire(){
+    public Fire(FireState currentState){
+
+        this.currentState = currentState;
         init();
     }
 
     public void init(){
         this.color = ColorUtil.MAGENTA;
-        size = new Random().nextInt(5)+15;
+        size = 0;
         dim = new Dimension(size,size);
         point = new Point(new Random().nextInt(Game.DISP_W),
                 new Random().nextInt(Game.DISP_H));
@@ -27,23 +32,32 @@ public class Fire extends Fixed{
         size += new Random().nextInt(2);
     }
 
-    public void setSize(int size) { this.size = size;}
-
     public void setLocation(Point point){
+        this.point.setX(point.getX());
+        this.point.setY(point.getY());
         dim.setWidth(point.getX());
         dim.setHeight(point.getY());
     }
 
-
+    public int getArea() {
+        return dim.getWidth();
+    }
 
     @Override
     public boolean collidesWith(GameObject other) {
         return false;
     }
 
+
+    public void setSize(int size) {
+        dim.setWidth(size);
+        dim.setHeight(size);
+        this.size = size;
+    }
+
     @Override
     public int getSize() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -59,20 +73,29 @@ public class Fire extends Fixed{
                 point.getY();
         g.setColor(color);
         if(size > 0) {
-            g.fillArc(x,
-                    y,
-                    size, size,
-                    0, 360);
-            g.drawString ("" + size,
-                    x + size,
-                    y + size);
+            g.fillArc(x,y, size, size,0, 360);
+            g.drawString ("" + size, x + size, y + size);
         }
     }
 
     public void start() {
-
+        currentState.updateState(this);
     }
 
+    public void setBuilding(int building){
+        this.building = building;
+    }
 
+    public int getBuilding(){
+        return building;
+    }
+
+    public FireState getCurrentState(){
+        return currentState;
+    }
+
+    public void setState(FireState state) {
+        currentState = state;
+    }
 }
 

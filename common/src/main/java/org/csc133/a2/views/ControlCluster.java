@@ -51,4 +51,8 @@ public class ControlCluster extends Container {
         right.add(brakeButton);
         right.add(accelerateButton);
     }
+
+    public void update(){
+        repaint();
+    }
 }

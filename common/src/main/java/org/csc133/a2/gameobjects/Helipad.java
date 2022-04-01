@@ -2,6 +2,7 @@ package org.csc133.a2.gameobjects;
 
 import com.codename1.charts.util.ColorUtil;
 import com.codename1.ui.Graphics;
+import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 
@@ -16,21 +17,12 @@ public class Helipad extends Fixed{
         this.color = ColorUtil.GRAY;
         //set the location of the helipad equal
         //to middle of screen at the bottom (9/10 of the way down)
-        point = new Point(   Game.DISP_W / 2,
-                Game.DISP_H -
-                        Game.DISP_H / 10);
+        point = new Point(Game.DISP_W/2,3*Game.DISP_H/4);
+        dim = new Dimension(Game.DISP_W/20,Game.DISP_W/20);
     }
 
     public void draw(Graphics g) {
 
-        g.setColor(color);
-
-        int length = Game.DISP_W/20;
-        int width = Game.DISP_W/20;
-
-        g.drawRect(point.getX() ,point.getY(), width, length);
-        g.drawArc(point.getX(),point.getY(),
-                width, length, 0, 360);
     }
 
     //need this specific getter to make sure
@@ -57,7 +49,12 @@ public class Helipad extends Fixed{
 
     @Override
     public void draw(Graphics g, Point containerOrigin) {
-        draw(g);
+        g.setColor(color);
+        int offX = point.getX() + containerOrigin.getX();
+        int offY = point.getY() + containerOrigin.getY();
+        g.drawRect(offX ,offY, dim.getWidth(),dim.getHeight());
+        g.drawArc(offX,offY,
+                dim.getWidth(), dim.getHeight(), 0, 360);
     }
 }
 

@@ -1,12 +1,13 @@
 package org.csc133.a2.gameobjects;
 
-public class Extinguished extends Fire2{
+public class Extinguished implements FireState{
 
     private static Extinguished instance = new Extinguished();
 
     private Extinguished() {};
 
-    public static Extinguished getExtinguished(){
+    public static Extinguished instance(){
+        System.out.println("I am now extinguished");
         return instance;
     }
 
@@ -15,7 +16,7 @@ public class Extinguished extends Fire2{
     }
 
     @Override
-    public void updateState(Fire2 fire) {
-
+    public void updateState(Fire fire) {
+        System.out.println("Extinguished to ??? ");
     }
 }

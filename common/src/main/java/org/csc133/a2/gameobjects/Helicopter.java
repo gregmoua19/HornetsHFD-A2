@@ -6,11 +6,12 @@ import com.codename1.ui.geom.Point;
 import org.csc133.a2.Game;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.Graphics;
+import org.csc133.a2.gameobjects.Helipad;
 
 public class Helicopter extends Movable{
     private int fuel;
     private int water;
-    private org.csc133.a2.gameobjects.Helipad helipad;
+    private Helipad helipad;
     private Point lineLocation;
     private double radianHeading;
     public Helicopter(){
@@ -25,7 +26,7 @@ public class Helicopter extends Movable{
         fuel = 25000;
         speed = 0;
         water = 0;
-        helipad = new org.csc133.a2.gameobjects.Helipad();
+        helipad = new Helipad();
         heading = 0;
 
         point = new Point(
@@ -92,6 +93,7 @@ public class Helicopter extends Movable{
 
     @Override
     public boolean collidesWith(GameObject other) {
+        System.out.println("Heli is colliding with " + other.toString());
 
         return (other.getPoint().getY() <= point.getY())
                 && (other.getPoint().getY() + other.getDim().getHeight() >= point.getY())
@@ -124,25 +126,17 @@ public class Helicopter extends Movable{
 
 
         //drawing a filled circle and line relative to its location
-        g.fillArc(x,
-                y,
-                50,50,
-                0,360);
-        g.drawLine(x + 25,
-                y + 25,
+        g.fillArc(x,y,50,50,0,360);
+        g.drawLine(x + 25,y + 25,
 
                 //x1 y1 guarantees that the line starts
                 //in the center of the circle but the
                 //x2 y2 are dictated by the angle of the heading
-                lineLocation.getX(),
-                lineLocation.getY());
-        g.drawString("Water: " + water,
-                x,
-                y  + 100);
+                lineLocation.getX() + containerOrigin.getX(),
+                lineLocation.getY() + containerOrigin.getY());
+        g.drawString("Water: " + water,x,y  + 100);
 
-        g.drawString("Fuel: " + fuel,
-                x,
-                y + 60);
+        g.drawString("Fuel: " + fuel, x,y + 60);
     }
 
     @Override
