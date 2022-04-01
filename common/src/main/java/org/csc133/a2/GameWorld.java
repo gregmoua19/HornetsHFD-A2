@@ -125,7 +125,7 @@ public class GameWorld {
         //and resting on helipad you win
         boolean allFiresOut = false;
         for(GameObject go: allGameObjects) {
-            if(go.toString() == "Fire") {
+            if(go instanceof Fire) {
                 if (go.getSize() > 0) {
                     allFiresOut = true;
                 }
@@ -164,11 +164,23 @@ public class GameWorld {
 
         //move around
             for (GameObject go : allGameObjects) {
+                if((go instanceof Fire)) {
+                    Fire fire = (Fire)go;
+                    if(go.getSize() <= 0) {
+                        ((Fire) go).setState(Extinguished.instance());
+                    }
+                }
                 if(increment % 2 == 0) {
-                    if (go.toString().equals("Fire")) {
+                    if (go instanceof Fire) {
+
+                        Fire fire = (Fire) go;
+                        if(fire.getCurrentState() instanceof Extinguished) {
+                            continue;
+                        }
                         go.grow();
                     }
                 }
+
             }
 
 
@@ -212,7 +224,7 @@ public class GameWorld {
     public String getFires() {
         int counter = 0;
         for (GameObject go : allGameObjects) {
-            if (go.toString() == "Fire") {
+            if (go instanceof Fire) {
                 counter++;
             }
         }
@@ -222,7 +234,7 @@ public class GameWorld {
     public String getFireSize() {
         int counter = 0;
         for (GameObject go : allGameObjects) {
-            if (go.toString().equals("Fire")) {
+            if (go instanceof Fire) {
                 counter += go.getSize();
             }
         }
@@ -241,7 +253,7 @@ public class GameWorld {
         for (GameObject go : allGameObjects) {
 
             //verify GameObject is Fire
-            if (go.toString().equals("Fire")) {
+            if (go instanceof Fire) {
 
                 //Check if connected to building 0, 1, or 2
                 if(go.getBuilding() == 0) {
@@ -273,7 +285,7 @@ public class GameWorld {
         for (GameObject go : allGameObjects) {
 
             //verify GameObject is Fire
-            if (go.toString().equals("Fire")) {
+            if (go instanceof Fire) {
 
                 //Check if connected to building 0, 1, or 2
                 if(go.getBuilding() == 0) {
